@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stomp-cluster-backend-deployment
+  labels:
+    app: stomp-cluster-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: stomp-cluster-backend
+  template:
+    metadata:
+      labels:
+        app: stomp-cluster-backend
+    spec:
+      containers:
+        - name: stomp-cluster-backend
+          image: stomp-cluster-backend:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APPLICATION_STOMP_BROKER_HOSTNAME
+              value: host.docker.internal
+            - name: SPRING_RABBITMQ_HOST
+              value: host.docker.internal

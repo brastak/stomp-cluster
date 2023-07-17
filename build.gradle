@@ -1,0 +1,9 @@
+group = 'codes.bespoke.brastak.snippets.stomp'
+version = '1.0-SNAPSHOT'
+
+gradle.taskGraph.whenReady { taskGraph ->
+    def task = taskGraph.allTasks.find { it.name.endsWith(".main()") }
+    if (task instanceof JavaExec) {
+        task.executable = task.javaLauncher.get().executablePath.asFile.absolutePath
+    }
+}

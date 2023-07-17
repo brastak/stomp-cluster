@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.0'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':common')
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework:spring-messaging'
+    implementation 'org.springframework:spring-websocket'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    runtimeOnly 'jakarta.websocket:jakarta.websocket-client-api'
+    runtimeOnly 'org.glassfish.tyrus.bundles:tyrus-standalone-client:2.1.3'
+    runtimeOnly 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    runtimeOnly 'org.postgresql:postgresql'
+}
+
+bootRun {
+    systemProperties System.properties
+}
